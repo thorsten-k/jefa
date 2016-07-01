@@ -1,4 +1,4 @@
-package de.kisner.github.jbmessage;
+package de.kisner.github.jbefa;
 
 import org.littleshoot.proxy.HttpProxyServer;
 import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.kisner.github.Bootstrap;
-import de.kisner.github.jbmessage.proxy.filter.VrrFilter;
+import de.kisner.github.jbefa.proxy.VrrFilter;
 
 public class HttpProxy 
 {

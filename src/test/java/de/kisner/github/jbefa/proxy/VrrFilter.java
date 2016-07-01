@@ -1,4 +1,4 @@
-package de.kisner.github.jbmessage.proxy.filter;
+package de.kisner.github.jbefa.proxy;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.littleshoot.proxy.HttpFiltersSourceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jbmessage.proxy.util.RequestContentType;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -61,6 +60,7 @@ public class VrrFilter extends HttpFiltersSourceAdapter
                   		}
             		}
             	}
+            	System.exit(-1);
                return null;
             }
 
