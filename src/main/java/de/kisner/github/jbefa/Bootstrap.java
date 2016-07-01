@@ -1,4 +1,4 @@
-package de.kisner.github;
+package de.kisner.github.jbefa;
 
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
@@ -9,7 +9,7 @@ import net.sf.exlp.util.io.LoggerInit;
 public class Bootstrap
 {
 	final static Logger logger = LoggerFactory.getLogger(Bootstrap.class);
-	public final static String xmlConfig = "jbmessage/config/jbmessage.xml";
+	public final static String xmlConfig = "jbefa/config/jbmessage.xml";
 	
 	public static Configuration init()
 	{
@@ -19,7 +19,7 @@ public class Bootstrap
 	public static Configuration init(String configFile)
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-		loggerInit.addAltPath("jbmessage/config");
+		loggerInit.addAltPath("jbefa/config");
 		loggerInit.init();
 
 

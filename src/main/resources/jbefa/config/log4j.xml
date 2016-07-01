@@ -9,7 +9,7 @@
 	    </layout>
 	</appender>
     
-    <logger name="de.kisner.github.jbmessage" additivity="false">
+    <logger name="de.kisner.github.jbefa" additivity="false">
 		<level value="DEBUG"/>
 		<appender-ref ref="A1"/>
 	</logger>

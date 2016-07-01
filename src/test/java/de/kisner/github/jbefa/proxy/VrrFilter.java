@@ -12,6 +12,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
@@ -50,14 +51,18 @@ public class VrrFilter extends HttpFiltersSourceAdapter
             			logger.info(request.getUri());
             			logger.info(request.toString());
             			
-            			HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
-            			decoder.setDiscardThreshold(0);
+            			if(request.getMethod().equals(HttpMethod.POST))
+            			{
+            				HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
+                			decoder.setDiscardThreshold(0);
 
-            			List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
-                  		for(InterfaceHttpData data : datas)
-                  		{
-                  			logger.info("\t"+data.toString());
-                  		}
+                			List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
+                      		for(InterfaceHttpData data : datas)
+                      		{
+                      			logger.info("\t"+data.toString());
+                      		}
+            			}
+            			
             		}
             	}
             	System.exit(-1);
@@ -72,15 +77,15 @@ public class VrrFilter extends HttpFiltersSourceAdapter
     				FullHttpResponse response = (FullHttpResponse)ho;
     				if(RequestContentType.relevant(response))
             		{
-            			logger.info(StringUtil.stars());
-            			logger.info(response.toString());
+//            			logger.info(StringUtil.stars());
+//            			logger.info(response.toString());
             			
             			ByteBuf buf = response.content();
             			byte[] bytes = new byte[buf.readableBytes()];
             			int readerIndex = buf.readerIndex();
             			buf.getBytes(readerIndex, bytes);
     					
-    					logger.info(new String(bytes));
+//    					logger.info(new String(bytes));
             		}
     			}
                 return ho;
