@@ -1,7 +1,6 @@
 package de.kisner.github.jbmessage.proxy.filter;
 
 import java.util.List;
-import java.util.Set;
 
 import org.littleshoot.proxy.HttpFilters;
 import org.littleshoot.proxy.HttpFiltersAdapter;
@@ -10,11 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.kisner.github.jbmessage.proxy.util.RequestContentType;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.DefaultFullHttpRequest;
-import io.netty.handler.codec.http.DefaultHttpRequest;
-import io.netty.handler.codec.http.DefaultHttpResponse;
-import io.netty.handler.codec.http.HttpContent;
+import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
@@ -26,10 +24,15 @@ public class VrrFilter extends HttpFiltersSourceAdapter
 {
 	final static Logger logger = LoggerFactory.getLogger(VrrFilter.class);
 	
+	private boolean debugRequest = true;
+	
 	public VrrFilter()
 	{		
 		
 	}
+	
+	@Override public int getMaximumRequestBufferSizeInBytes() {return 10 * 1024 * 1024;}
+	@Override public int getMaximumResponseBufferSizeInBytes() {return 10 * 1024 * 1024;}
 	
 	public HttpFilters filterRequest(HttpRequest originalRequest, ChannelHandlerContext ctx)
     {
@@ -37,55 +40,49 @@ public class VrrFilter extends HttpFiltersSourceAdapter
         {
             @Override
             public HttpResponse clientToProxyRequest(HttpObject ho)
-            {
-            	
-            	if(ho instanceof DefaultHttpRequest)
+            {            	
+            	if(debugRequest && ho instanceof FullHttpRequest)
             	{
-            		DefaultHttpRequest hr = (DefaultHttpRequest)ho;
+            		FullHttpRequest request = (FullHttpRequest)ho;
             		
-            		logger.info("Full? "+(hr instanceof DefaultFullHttpRequest));
-            		
-            		if(RequestContentType.relevant(hr.getUri()))
+            		if(RequestContentType.relevant(request))
             		{
             			logger.info(StringUtil.stars());
-            			logger.info(hr.getUri());
-                    	Set<String> set = hr.headers().names();
-                		for(String s : set)
-                		{
-                //			logger.info(s+": "+hr.headers().get(s));
-                		}
-                		logger.info(hr.toString());
-                		
-                		
-                		HttpPostRequestDecoder d = new HttpPostRequestDecoder(hr);
-                		logger.info("Size:"+d.isMultipart());
-                		d.offer((HttpContent)hr);
-                		List<InterfaceHttpData> datas = d.getBodyHttpDatas();
-                		logger.info("Size:"+datas.size());
-                		
-                		
-                	
+            			logger.info(request.getUri());
+            			logger.info(request.toString());
+            			
+            			HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
+            			decoder.setDiscardThreshold(0);
+
+            			List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
+                  		for(InterfaceHttpData data : datas)
+                  		{
+                  			logger.info("\t"+data.toString());
+                  		}
             		}
-            		
-            		
             	}
-            	
                return null;
             }
 
             @Override
             public HttpObject serverToProxyResponse(HttpObject ho)
             {
-            	
-            	if(ho instanceof DefaultHttpResponse)
-            	{
-            		DefaultHttpResponse hr = (DefaultHttpResponse)ho;
-            		Set<String> set = hr.headers().names();
-            		for(String s : set)
+    			if(ho instanceof FullHttpResponse)
+    			{
+    				FullHttpResponse response = (FullHttpResponse)ho;
+    				if(RequestContentType.relevant(response))
             		{
-           // 			logger.info(s+": "+hr.headers().get(s));
+            			logger.info(StringUtil.stars());
+            			logger.info(response.toString());
+            			
+            			ByteBuf buf = response.content();
+            			byte[] bytes = new byte[buf.readableBytes()];
+            			int readerIndex = buf.readerIndex();
+            			buf.getBytes(readerIndex, bytes);
+    					
+    					logger.info(new String(bytes));
             		}
-            	}
+    			}
                 return ho;
             }
         };
