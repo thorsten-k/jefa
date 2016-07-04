@@ -1,5 +1,6 @@
 package de.kisner.github.jbefa.downloader;
 
+import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,10 +13,12 @@ public class TestJbEfaDownloader
 	
 	public static void main(String args[]) throws Exception
 	{		
-		Bootstrap.init();
+		Configuration config = Bootstrap.init();
 		HttpProxy.start();
 		
-		JbEfaHttpClient cli = new JbEfaHttpClient();
-		cli.step1();
+		JbEfaHttpClient cli = new JbEfaHttpClient(config);
+//		cli.step1();
+//		cli.step2();
+		cli.step3();
 	}
 }

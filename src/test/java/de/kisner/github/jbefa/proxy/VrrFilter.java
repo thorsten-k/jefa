@@ -65,7 +65,7 @@ public class VrrFilter extends HttpFiltersSourceAdapter
             			
             		}
             	}
-            	System.exit(-1);
+//            	System.exit(-1);
                return null;
             }
 

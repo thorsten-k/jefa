@@ -39,7 +39,7 @@ public class RequestContentType extends HttpFiltersSourceAdapter
 	
 	public static boolean relevant(HttpResponse response)
     {
-//		logger.info(response.toString());
+		logger.info(response.toString());
 		
 		String contentType = response.headers().get("Content-Type");
 		
