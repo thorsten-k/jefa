@@ -4,9 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>     
 	
 	<groupId>de.kisner.github</groupId>
-	<artifactId>jbefa</artifactId>
+	<artifactId>jefa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Jetty</name>
 	<packaging>jar</packaging>
     
 
@@ -178,4 +177,5 @@
        		</build>
    		</profile>
 	</profiles>
+	<name>jEFA</name>
 </project>
