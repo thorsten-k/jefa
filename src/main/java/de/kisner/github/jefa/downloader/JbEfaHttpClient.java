@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.downloader;
+package de.kisner.github.jefa.downloader;
 
 import java.io.File;
 import java.io.IOException;

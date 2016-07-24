@@ -4,8 +4,9 @@ import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jbefa.Bootstrap;
 import de.kisner.github.jbefa.proxy.HttpProxy;
+import de.kisner.github.jefa.Bootstrap;
+import de.kisner.github.jefa.downloader.JbEfaHttpClient;
 
 public class TestJbEfaDownloader 
 {

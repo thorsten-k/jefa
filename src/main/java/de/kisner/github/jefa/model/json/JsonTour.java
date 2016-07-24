@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.model.json;
+package de.kisner.github.jefa.model.json;
 
 import java.io.Serializable;
 import java.util.Date;

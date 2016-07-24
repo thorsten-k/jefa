@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa;
+package de.kisner.github.jefa;
 
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;

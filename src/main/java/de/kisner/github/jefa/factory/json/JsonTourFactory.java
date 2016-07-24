@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.factory.json;
+package de.kisner.github.jefa.factory.json;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jbefa.model.json.JsonTour;
+import de.kisner.github.jefa.model.json.JsonTour;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.StringUtil;
 

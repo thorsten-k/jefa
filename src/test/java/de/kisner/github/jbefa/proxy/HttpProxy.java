@@ -4,7 +4,7 @@ import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jbefa.Bootstrap;
+import de.kisner.github.jefa.Bootstrap;
 
 public class HttpProxy 
 {
