@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.proxy;
+package de.kisner.github.jefa.proxy;
 
 import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 import org.slf4j.Logger;

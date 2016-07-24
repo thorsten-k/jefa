@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.proxy;
+package de.kisner.github.jefa.proxy;
 
 import org.littleshoot.proxy.HttpFiltersSourceAdapter;
 import org.slf4j.Logger;

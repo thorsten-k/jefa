@@ -1,4 +1,4 @@
-package de.kisner.github.jbefa.downloader.parser;
+package de.kisner.github.jefa.downloader.parser;
 
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
