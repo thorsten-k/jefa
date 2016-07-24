@@ -17,8 +17,8 @@ public class TestJbEfaDownloader
 		HttpProxy.start();
 		
 		JbEfaHttpClient cli = new JbEfaHttpClient(config);
-//		cli.step1();
+		cli.step1();
 //		cli.step2();
-		cli.step3();
+//		cli.step3();
 	}
 }

@@ -60,10 +60,7 @@ public class JbEfaHttpClient
             finally {response.close();}
         }
         catch (IOException  e) {e.printStackTrace();}
-        finally
-        {
-            try {httpclient.close();} catch (IOException e) {e.printStackTrace();}
-        }
+        finally {try {httpclient.close();} catch (IOException e) {e.printStackTrace();}}
 	}
 	
 	public void step2()
@@ -114,10 +111,8 @@ public class JbEfaHttpClient
         	urlParameters.add(new BasicNameValuePair("itdDateYear", "2016"));
         	urlParameters.add(new BasicNameValuePair("submitButton", "anfordern"));
         	
-        	
         	post.setEntity(new UrlEncodedFormEntity(urlParameters));
 
-            
             logger.debug("Executing request " + post.getRequestLine() + " to " + target + " via " + proxy);
 
             CloseableHttpResponse response = httpclient.execute(target, post);
