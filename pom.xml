@@ -2,16 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>     
-	
-	<groupId>de.kisner.github</groupId>
+	<groupId>de.kisner</groupId>
 	<artifactId>jefa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-    
+    <name>jEFA</name>
+    <description>x</description>
 
-    <properties>
-    	<my.build.directory>target</my.build.directory>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties>
+		<my.build.directory>target</my.build.directory>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    	<maven.ignore>file://${basedir}/src/main/resources/jbenkins/maven/ignore-versions.xml</maven.ignore>
 	</properties>
 
 	<prerequisites>
@@ -79,29 +81,13 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-  						<lifecycleMappingMetadata>
-            				<pluginExecutions>
-              					<pluginExecution>
-                					<pluginExecutionFilter>
-                  						<groupId>org.apache.maven.plugins</groupId>
-                  						<artifactId>maven-enforcer-plugin</artifactId>
-                  						<versionRange>[1.0.0,)</versionRange>
-                  						<goals>
-                    						<goal>enforce</goal>
-                  						</goals>
-                					</pluginExecutionFilter>
-                					<action>
-                  						<ignore />
-                					</action>
-              					</pluginExecution>
-            				</pluginExecutions>
-          				</lifecycleMappingMetadata>
-        			</configuration>
-      			</plugin>
+		         <groupId>org.apache.maven.plugins</groupId>
+		        	<artifactId>maven-pmd-plugin</artifactId>
+		        	<version>3.6</version>
+		        	<configuration>
+			        	<linkXRef>false</linkXRef>
+			      </configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -175,7 +161,45 @@
        		<build>
        			<directory>${my.build.directory}</directory>
        		</build>
-   		</profile>
+		</profile>
+		<profile>
+			<id>only-eclipse</id>
+			<activation><property><name>m2e.version</name></property></activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>1.0.0</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+			      						<pluginExecution>
+		                					<pluginExecutionFilter>
+		                  						<groupId>org.apache.maven.plugins</groupId>
+		                  						<artifactId>maven-enforcer-plugin</artifactId>
+		                  						<versionRange>[1.0.0,)</versionRange>
+		                  						<goals><goal>enforce</goal></goals>
+		                					</pluginExecutionFilter>
+		                					<action><ignore /></action>
+		              					</pluginExecution>
+		              					<pluginExecution>
+		              						<pluginExecutionFilter>
+		              							<groupId>net.sf.exlp</groupId>
+		              							<artifactId>exlp-maven</artifactId>
+		              							<versionRange>[0.1.11-SNAPSHOT,)</versionRange>
+		              							<goals><goal>mvnVersionIgnore</goal></goals>
+		              						</pluginExecutionFilter>
+		              						<action><ignore></ignore></action>
+		              					</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
 	</profiles>
-	<name>jEFA</name>
 </project>
