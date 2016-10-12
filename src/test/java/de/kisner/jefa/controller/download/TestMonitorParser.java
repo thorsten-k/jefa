@@ -4,7 +4,7 @@ import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jefa.Bootstrap;
+import de.kisner.jefa.Bootstrap;
 import de.kisner.jefa.controller.download.MonitorParser;
 import de.kisner.jefa.model.json.JsonSchedule;
 import de.kisner.jefa.model.json.JsonTour;
