@@ -1,4 +1,4 @@
-package de.kisner.github.jefa.proxy;
+package de.kisner.jefa.controller.proxy;
 
 import java.util.List;
 

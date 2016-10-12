@@ -1,4 +1,4 @@
-package de.kisner.github.jefa.downloader;
+package de.kisner.jefa.controller.download;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package de.kisner.github.jefa.downloader.parser;
+package de.kisner.jefa.controller.download;
 
 import java.io.File;
 
@@ -10,8 +10,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.kisner.github.jefa.factory.json.JsonTourFactory;
-import de.kisner.github.jefa.model.json.JsonSchedule;
+import de.kisner.jefa.factory.json.JsonTourFactory;
+import de.kisner.jefa.model.json.JsonSchedule;
 import net.sf.exlp.util.io.StringIO;
 
 public class MonitorParser 

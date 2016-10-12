@@ -1,4 +1,4 @@
-package de.kisner.github.jefa.downloader;
+package de.kisner.jefa.controller.download;
 
 import org.apache.http.Header;
 import org.apache.http.impl.client.CloseableHttpClient;
