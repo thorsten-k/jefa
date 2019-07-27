@@ -33,10 +33,9 @@ public class JsonRestProxy implements Serializable
 	
 	public static VrrResponse tripFinder(OpenVrrJsonRest rest, String origin, String destination) throws JsonParseException, JsonMappingException, IOException
 	{
-		String s = rest.tripFinder("JSON","1","1","WGS84[DD.DDDDD]",
+		String s = rest.tripFinder("JSON","1","1","WGS84[DD.DDDDD]",1,
 						origin,destination,
 						"any","any");
-		System.out.println(s);
 		VrrResponse r = JsonUtil.read(VrrResponse.class, s.getBytes());
 		return r;
 	}

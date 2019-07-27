@@ -39,7 +39,7 @@ public class CliJsonRest
 //		VrrResponse r2 = JsonRestProxy.stopFinder(rest,"Recklinghausen Hbf");
 //		JsonUtil.info(r2);
 		
-		VrrResponse r3 = rest.tripFinder("20003581","20009289");
+		VrrResponse r3 = rest.tripFinder("20009289","20003581");
 		JsonUtil.info(r3);
 	}
 	

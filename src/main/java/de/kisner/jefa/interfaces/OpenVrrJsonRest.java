@@ -29,6 +29,7 @@ public interface OpenVrrJsonRest
 					@QueryParam("locationServerActive") String locationServerActive,
 					@QueryParam("coordOutputFormat") String coordOutputFormat,
 					
+					@QueryParam("useRealtime") int useRealtime,
 					@QueryParam("name_origin") String nameOrigin,
 					@QueryParam("name_destination") String nameDestination,
 					@QueryParam("type_origin") String typeOrigin,
