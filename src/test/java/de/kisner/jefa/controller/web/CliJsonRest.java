@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import de.kisner.jefa.Bootstrap;
 import de.kisner.jefa.controller.proxy.JsonRestProxy;
@@ -24,7 +25,7 @@ public class CliJsonRest
 	
 	private JsonRestProxy rest;
 	
-	public CliJsonRest() throws JsonParseException, IOException
+	public CliJsonRest()
 	{
 		ResteasyClient client = new ResteasyClientBuilder().build();
 	//	client.register(new BasicAuthentication(restUser, restPwd));
@@ -32,14 +33,17 @@ public class CliJsonRest
 		
 		client.register(new RestLogger());
 		rest = new JsonRestProxy(restTarget.proxy(OpenVrrJsonRest.class));
-				
+	}
+	
+	public void test() throws JsonParseException, JsonMappingException, IOException
+	{
 //		VrrResponse r1 = JsonRestProxy.stopFinder(rest,"Essen Hbf");
 //		JsonUtil.info(r1);
 //		
 //		VrrResponse r2 = JsonRestProxy.stopFinder(rest,"Recklinghausen Hbf");
 //		JsonUtil.info(r2);
 		
-		VrrResponse r3 = rest.tripFinder("20009289","20003581");
+		VrrResponse r3 = rest.tripFinder("20003581","20009289");
 		JsonUtil.info(r3);
 	}
 	
@@ -47,6 +51,6 @@ public class CliJsonRest
 	{		
 		Configuration config = Bootstrap.init();
 		CliJsonRest cli = new CliJsonRest();
-		
+		cli.test();
 	}
 }
